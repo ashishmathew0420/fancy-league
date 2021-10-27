@@ -61,7 +61,7 @@ app.post("/teams", (req, res) => {
 app.put("/teams/:id", (req, res) => {
   const team = req.body;
   client.query(
-    `update team set name = '${team.name}' where team_key = ${team.id}`,
+    `update team set team_name = '${team.name}' where team_key = ${team.id}`,
     (err, result) => {
       if (!err) return res.send("update succesfull");
     }
