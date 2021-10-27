@@ -31,30 +31,51 @@ app.get("/teams", (req, res) => {
 
 app.listen(3300, () => console.log("listening on port 3300"));
 
-
-//get team by id 
-
+//get team by id
 
 app.get("/teams/:id", (req, res) => {
-    client.query(
-      `select * from team where team_key = ${req.params.id}`,
-      (err, result) => {
-        if (!err) return res.send(result.rows);
-      }
-    );
+  client.query(
+    `select * from team where team_key = ${req.params.id}`,
+    (err, result) => {
+      if (!err) return res.send(result.rows);
+    }
+  );
+  client.end;
+});
+
+//post a new team
+
+app.post("/teams", (req, res) => {
+  const newTeam = req.body;
+  client.query(
+    `insert into team values(${newTeam.id},'  ${newTeam.name}')`,
+    (err, result) => {
+      if (!err) return res.send("insertion succesfull");
+    }
+  );
+  client.end;
+});
+
+//update team
+
+app.put("/teams/:id", (req, res) => {
+  const team = req.body;
+  client.query(
+    `update team set name = '${team.name}' where team_key = ${team.id}`,
+    (err, result) => {
+      if (!err) return res.send("update succesfull");
+    }
+  );
+  client.end;
+});
+
+//delete user
+
+app.delete("/teams/:id", (req, res) => {
+    const team = req.body;
+    client.query(`delete from team where team_key = ${team.id}`, (err, result) => {
+      if (!err) return res.send("delete succesfull");
+    });
     client.end;
   });
   
-
-  //post a new team 
-
-  app.post("/teams", (req, res) => {
-    const newTeam = req.body;
-    client.query(
-      `insert into team values(${newTeam.id},'  ${newTeam.name}')`,
-      (err, result) => {
-        if (!err) return res.send("insertion succesfull");
-      }
-    );
-    client.end;
-  });
