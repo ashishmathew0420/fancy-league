@@ -45,3 +45,16 @@ app.get("/teams/:id", (req, res) => {
     client.end;
   });
   
+
+  //post a new team 
+
+  app.post("/teams", (req, res) => {
+    const newTeam = req.body;
+    client.query(
+      `insert into team values(${newTeam.id},'  ${newTeam.name}')`,
+      (err, result) => {
+        if (!err) return res.send("insertion succesfull");
+      }
+    );
+    client.end;
+  });
