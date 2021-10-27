@@ -19,4 +19,14 @@ async function connect(client) {
   }
 }
 connect(client);
+
+//get all teams
+
+app.get("/teams", (req, res) => {
+  client.query("select * from team", (err, result) => {
+    if (!err) return res.send(result.rows);
+  });
+  client.end;
+});
+
 app.listen(3300, () => console.log("listening on port 3300"));
