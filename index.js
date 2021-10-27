@@ -30,3 +30,18 @@ app.get("/teams", (req, res) => {
 });
 
 app.listen(3300, () => console.log("listening on port 3300"));
+
+
+//get team by id 
+
+
+app.get("/teams/:id", (req, res) => {
+    client.query(
+      `select * from team where team_key = ${req.params.id}`,
+      (err, result) => {
+        if (!err) return res.send(result.rows);
+      }
+    );
+    client.end;
+  });
+  
