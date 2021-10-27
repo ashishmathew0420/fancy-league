@@ -1,9 +1,31 @@
 const express = require("express");
 require("dotenv").config();
 const { Client } = require("pg");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+
 
 const app = express();
 app.use(express.json());
+
+
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
+
+app.use(cors(corsOptions));
+
+
+app.use(express.urlencoded({ extended: true }));
+
+
+app.get("/", (req, res) => {
+  res.json({ message: "ChampionsLeague" });
+});
+
+const PORT = process.env.PORT || 5000;
+
 
 //connection url
 const db_url = process.env.DB_URL;
@@ -29,7 +51,7 @@ app.get("/teams", (req, res) => {
   client.end;
 });
 
-app.listen(3300, () => console.log("listening on port 3300"));
+app.listen(PORT, () => console.log(`listening on port ${PORT}`));
 
 //get team by id
 
