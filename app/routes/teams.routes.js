@@ -9,8 +9,8 @@ module.exports = (app) => {
   //retrive all teams
   router.get("/", teams.findAll);
 
-  //retreive team by id
-  router.get("/:id", teams.findOne);
+//   //retreive team by id
+//   router.get("/:id", teams.findOne);
 
   //update a team by id
   router.put("/:id", teams.update);
