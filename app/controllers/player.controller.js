@@ -15,7 +15,11 @@ exports.create = (req, res) => {
   //create player
   const player = {
     player_name: req.body.player_name,
-    teamId: id,
+    teamId: id, 
+    player_age:req.body.player_age,
+    player_number:req.body.player_number,
+    player_type:req.body.player_type,
+    player_image:req.body.player_image
   };
 
   //add newPlayer  to player table
