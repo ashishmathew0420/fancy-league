@@ -8,5 +8,11 @@ module.exports = (app) => {
   //get all players
   router.get("/", players.findAll);
 
+  //update player
+  router.put("/:id", players.update);
+
+  //delete player
+  router.delete("/:id", players.delete);
+
   app.use("/api/teams/players", router);
 };

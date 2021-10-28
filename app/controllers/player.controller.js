@@ -39,3 +39,51 @@ exports.findAll = (req, res) => {
       });
     });
 };
+
+exports.update = (req, res) => {
+  const id = req.params.id;
+
+  Player.update(req.body, {
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          messasage: "Player updated sucessfully",
+        });
+      } else {
+        res.send({
+          message: `Cannot update Player with id=${id}. Maybe Player was not found or req.body is empty!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error updating Player by id = ${id}`,
+      });
+    });
+};
+
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  Player.destroy({
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Player was deleted",
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Player with id=${id}. Maybe Player was not found!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Cannot delete Player with id=${id}`,
+      });
+    });
+};
