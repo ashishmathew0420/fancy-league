@@ -15,7 +15,6 @@ exports.create = (req, res) => {
   //create team
   const team = {
     team_name: req.body.team_name,
-    team_logo: req.body.team_logo,
   };
 
   //add newteam to teams table
