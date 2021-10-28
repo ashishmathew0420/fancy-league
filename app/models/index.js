@@ -2,6 +2,7 @@ const dbConfig = require("../config/db.config");
 
 const Sequelize = require("sequelize");
 const teamModal = require("./team.model.js");
+const playerModal = require("./players.model");
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -22,5 +23,12 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.teams = teamModal(sequelize, Sequelize);
+db.players = playerModal(sequelize, Sequelize);
+
+db.teams.hasMany(db.players, { as: "players" });
+db.players.belongsTo(db.teams, {
+  foreignKey: "teamId",
+  as: "team",
+});
 
 module.exports = db;
