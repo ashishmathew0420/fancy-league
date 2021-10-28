@@ -6,12 +6,17 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 
+app.use(cors());
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+});
+
 const db = require("./app/models/index");
 db.sequelize.sync();
 
 require("./app/routes/teams.routes")(app);
 require("./app/routes/players.routes")(app);
-
 
 app.use(express.urlencoded({ extended: true }));
 
