@@ -1,7 +1,6 @@
 const dbConfig = require("../config/db.config");
 
 const Sequelize = require("sequelize");
-const dbConfig = require("../config/db.config");
 const teamModal = require("./team.model.js");
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {

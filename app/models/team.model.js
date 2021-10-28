@@ -1,19 +1,19 @@
-const { sequelize } = require(".");
-const { Datatypes } = require(sequelize);
+const { sequelize, Sequelize } = require(".");
 
 module.exports = (sequelize) => {
+  const { DataTypes } = require("sequelize");
   const teams = sequelize.define("teams", {
     team_id: {
-      type: Datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       primarykey: true,
       autoincrement: true,
     },
     team_name: {
-      type: Datatypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     team_logo: {
-      type: Datatypes.STRING,
+      type: DataTypes.STRING,
     },
   });
   return teams;
