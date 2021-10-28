@@ -4,35 +4,27 @@ const { Client } = require("pg");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-
 const app = express();
 app.use(express.json());
 
 const db = require("./app/models/index");
-db.sequelize.sync({force:true}).then(() => {
-  console.log("drop and resync db.")
-});
+db.sequelize.sync({ force: true });
 
 require("./app/routes/teams.routes")(app);
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8081",
 };
 
 app.use(cors(corsOptions));
 
-
 app.use(express.urlencoded({ extended: true }));
 
-
-
-
-app.get("/", (req, res) => {
-  res.json({ message: "ChampionsLeague" });
-});
+// app.get("/", (req, res) => {
+//   res.json({ message: "ChampionsLeague" });
+// });
 
 const PORT = process.env.PORT || 5000;
-
 
 // //connection url
 // const db_url = process.env.DB_URL;
@@ -57,8 +49,6 @@ const PORT = process.env.PORT || 5000;
 //   });
 //   client.end;
 // });
-
-app.listen(PORT, () => console.log(`listening on port ${PORT}`));
 
 // //get team by id
 
@@ -107,4 +97,5 @@ app.listen(PORT, () => console.log(`listening on port ${PORT}`));
 //     });
 //     client.end;
 //   });
-  
+
+app.listen(PORT, () => console.log(`listening on port ${PORT}`));
