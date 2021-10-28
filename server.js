@@ -13,11 +13,7 @@ db.sequelize.sync();
 require("./app/routes/teams.routes")(app);
 require("./app/routes/players.routes")(app);
 
-var corsOptions = {
-  origin: "http://localhost:8081",
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 
