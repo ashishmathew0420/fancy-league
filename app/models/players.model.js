@@ -18,6 +18,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       player_image: {
         type: DataTypes.STRING,
+        defaultValue:"https://cdn.soccerwiki.org/images/player/57658_1344446012.jpg"
       },
     },
     {
