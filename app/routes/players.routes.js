@@ -6,7 +6,7 @@ module.exports = (app) => {
   router.post("/:id", players.create);
 
   //get all players
-  router.get("/", players.findAll);
+  router.get("/:id", players.findAll);
 
   //update player
   router.put("/:id", players.update);

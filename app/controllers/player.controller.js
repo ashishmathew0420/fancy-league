@@ -15,11 +15,11 @@ exports.create = (req, res) => {
   //create player
   const player = {
     player_name: req.body.player_name,
-    teamId: id, 
-    player_age:req.body.player_age,
-    player_number:req.body.player_number,
-    player_type:req.body.player_type,
-    player_image:req.body.player_image
+    teamId: id,
+    player_age: req.body.player_age,
+    player_number: req.body.player_number,
+    player_type: req.body.player_type,
+    player_image: req.body.player_image,
   };
 
   //add newPlayer  to player table
@@ -27,7 +27,8 @@ exports.create = (req, res) => {
     .then((data) => res.send(data))
     .catch((err) =>
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the Team.",
+        message:
+          err.message || "Some error occurred while creating the players.",
       })
     );
 };
@@ -35,11 +36,12 @@ exports.create = (req, res) => {
 //retrive all players
 
 exports.findAll = (req, res) => {
-  Player.findAll()
+  const id = req.params.id;
+  Player.findAll({ where: { teamId: id } })
     .then((data) => res.send(data))
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving teams",
+        message: err.message || "Some error occurred while retrieving players",
       });
     });
 };
