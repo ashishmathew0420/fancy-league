@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       team_logo: {
         type: DataTypes.STRING,
-        defaultValue: "https://cdn.soccerwiki.org/images/logos/clubs/3310.png",
+        defaultValue: "https://cdn.soccerwiki.org/images/logos/clubs/49.png",
       },
     },
     {
